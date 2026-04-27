@@ -1,6 +1,6 @@
-# my pi stuff
+# a2-po-skills
 
-Personal skills and extensions for [pi](https://github.com/mariozechner/pi), synced across machines.
+my pi stuff
 
 ## Skills
 
