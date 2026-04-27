@@ -33,7 +33,10 @@ _move_up() { printf '\033[%dA' "$1"; }
 # Read a single keypress (handles escape sequences including CSI u)
 _read_key() {
     local key rest extra
-    IFS= read -rs -n1 key
+    if ! IFS= read -rs -n1 key; then
+        printf ''
+        return
+    fi
 
     # Not an escape — return as-is
     if [[ "$key" != $'\x1b' ]]; then
@@ -186,7 +189,6 @@ _ext_paths=()
 
 if [[ -d "$SKILLS_SRC" ]]; then
     while IFS= read -r -d '' d; do
-        local name
         name="$(basename "$d")"
         _skills+=("[skill] $name")
         _skill_paths+=("$d")
@@ -195,7 +197,6 @@ fi
 
 if [[ -d "$EXTS_SRC" ]]; then
     while IFS= read -r -d '' f; do
-        local name
         name="$(basename "$f")"
         _exts+=("[ext] $name")
         _ext_paths+=("$f")
@@ -226,15 +227,13 @@ mkdir -p "$SKILLS_DST" "$EXTS_DST"
 
 installed=0
 for idx in "${_selected_indices[@]}"; do
-    local src dst label name
-
     if (( idx < ${#_skills[@]} )); then
         src="${_skill_paths[$idx]}"
         name="$(basename "$src")"
         dst="${SKILLS_DST}/${name}"
         label="skill"
     else
-        local ext_idx=$(( idx - ${#_skills[@]} ))
+        ext_idx=$(( idx - ${#_skills[@]} ))
         src="${_ext_paths[$ext_idx]}"
         name="$(basename "$src")"
         dst="${EXTS_DST}/${name}"
@@ -247,7 +246,7 @@ for idx in "${_selected_indices[@]}"; do
     else
         cp -f "$src" "$dst"
     fi
-    (( installed++ ))
+    (( ++installed ))
 done
 
 printf "\n${GREEN}Installed %d item(s).${CLR} Restart pi to pick them up.\n" "$installed"
