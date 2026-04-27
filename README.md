@@ -32,7 +32,8 @@ git push
 ```bash
 git clone https://github.com/a2ajinkya/a2-po-tools.git ~/a2-po-tools
 cd ~/a2-po-tools
-./scripts/install.sh
+npm install
+npm run install-tools
 ```
 
 ## Excluded

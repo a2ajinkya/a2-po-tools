@@ -1,0 +1,13 @@
+{
+  "name": "a2-po-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install-tools": "tsx scripts/install.ts"
+  },
+  "devDependencies": {
+    "@clack/prompts": "^0.10.1",
+    "@types/node": "^22.15.3",
+    "tsx": "^4.19.4"
+  }
+}
