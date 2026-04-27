@@ -1,41 +1,47 @@
-# a2-po-tools
+# my pi stuff
 
 Personal skills and extensions for [pi](https://github.com/mariozechner/pi), synced across machines.
 
-## What's inside
+## Skills
 
-| Type | Count | Path |
-|------|-------|------|
-| Skills | 13 | `skills/` |
-| Extensions | 4 | `extensions/` |
+- `frontend-design` — Design and implement frontend interfaces (HTML/CSS/JS, React, Vue, etc.)
+- `obsidian` — Work with Obsidian vaults via notesmd-cli
+- `omarchy` — Customize Linux desktop, Hyprland, waybar, etc.
+- `pi-ai` — Patterns for building LLM-powered apps with @mariozechner/pi-ai
+- `pi-share` — Load and parse session transcripts from pi-share URLs
+- `tavily-best-practices` — Production-ready Tavily integration patterns
+- `tavily-cli` — Tavily CLI usage guide
+- `tavily-crawl` — Crawl websites via Tavily CLI
+- `tavily-extract` — Extract content from specific URLs via Tavily CLI
+- `tavily-map` — Discover and list URLs on a website via Tavily CLI
+- `tavily-research` — Conduct AI-powered research via Tavily CLI
+- `tavily-search` — Search the web with Tavily CLI
+- `uv` — Use `uv` for Python scripting, deps, and environments
 
-Skills include: `frontend-design`, `obsidian`, `omarchy`, `pi-ai`, `pi-share`, `tavily-*`, `uv`
+## Extensions
 
-Extensions include: `explore-mode`, `plan-mode`, `files.ts`, `prompt-editor.ts`
+- `explore-mode`
+- `plan-mode`
+- `files.ts`
+- `prompt-editor.ts`
 
-## Usage
-
-### Laptop (source of truth)
-
-After editing skills or extensions on your laptop:
-
-```bash
-cd ~/a2-po-tools
-./scripts/export.sh
-git add -A
-git commit -m "update: <describe what changed>"
-git push
-```
-
-### New machine / Termux
+## Install
 
 ```bash
 git clone https://github.com/a2ajinkya/a2-po-tools.git ~/a2-po-tools
 cd ~/a2-po-tools
 npm install
-npm run install-tools
+npx tsx scripts/install.ts
 ```
 
-## Excluded
+Then pick what you want and restart pi.
 
-No auth tokens, sessions, sticky notes, or settings are tracked. This repo only contains portable skills and extensions.
+## Updating
+
+Pull the latest, reinstall:
+
+```bash
+cd ~/a2-po-tools
+git pull
+npx tsx scripts/install.ts
+```
